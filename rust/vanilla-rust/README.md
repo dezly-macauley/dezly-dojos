@@ -38,5 +38,8 @@ Open the terminal and run this command from anywhere in the directory.
 ```
 cargo run --quiet --bin 01-printing-to-the-terminal
 ```
+_______________________________________________________________________________
+
+### For more info check out the documentation inside `01-guides`
 
 _______________________________________________________________________________
