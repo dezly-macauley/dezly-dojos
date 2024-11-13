@@ -233,6 +233,11 @@ This is known as the schema of the database.
 This table called "users", it has two columns, 
 and each of those columns can hold up to 128 characters of text.
 
+
+In PostgreSQL a database can have multiple schema
+
+Inside each schema are the tables 
+
 _______________________________________________________________________________
 
 ### How to view the schema of a table
@@ -242,3 +247,4 @@ _______________________________________________________________________________
 ```
 
 _______________________________________________________________________________
+
