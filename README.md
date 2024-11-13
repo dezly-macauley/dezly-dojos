@@ -11,6 +11,8 @@ _______________________________________________________________________________
 
 ## High Performance Back-End Development
 
+<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/go.svg" width="50" height="50" />
+
 ### Go
 **1. Vanilla Go**
 
