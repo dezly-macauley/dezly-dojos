@@ -80,8 +80,10 @@ psql -U "postgres"
 
 Create another user:
 ```
-CREATE USER "dezly-macauley";
+CREATE USER "dezly-macauley WITH LOGIN CREATEDB";
 ```
+
+"dezly-macauley" is a user with the permission to login and create databases
 
 _______________________________________________________________________________
 
