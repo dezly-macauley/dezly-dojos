@@ -1,0 +1,19 @@
+{
+    "name": "dezly-macauley/vanilla-php",
+    "description": "A training lab for PHP",
+    "type": "project",
+    "license": "GPL-3.0",
+    "autoload": {
+        "psr-4": {
+            "DezlyMacauley\\VanillaPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dezly-macauley",
+            "email": "dezlymacauley@proton.me"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
