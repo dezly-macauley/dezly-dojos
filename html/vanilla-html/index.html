@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>HTML Forms</title>
+    </head>
+    <body>
+
+        <form action="/registration" method="POST">
+          
+            <!-- Single line Text Input -->
+            <br/><label for="username">Username:</label>
+            <input type="text" name="username" value="">
+
+            <br/><label for="age">Age:</label>
+            <input type="number" name="age" value="" />
+            
+            <br/><label for="email">Email:</label>
+            <input type="email" name="email" value="" />
+
+            <!-- Multiline Text Input-->
+            
+            <label for="comments">Comments:</label><br>
+            <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+            <!-- File Upload -->
+            <br/>
+
+            <br/><label for="email">Email:</label>
+            <input type="file" name="file" value="">
+
+            <br/>
+            <!-- Paswords -->
+            <label for="password">Password:</label>
+            <input type="password">
+
+            <!-- Checkboxes -->
+            <input type="checkbox" name="dog" value="Dog">
+            <label for="dog">Are you a dog owner?</label><br>
+
+            <input type="checkbox" name="cat" value="Cat">
+            <label for="cat">Are you a cat owner?</label><br/>
+
+            <!-- Drop down list -->
+
+            <select id="options" name="options">
+            <option value="option1">Option 1</option>
+            <option value="option2" selected>Option 2</option>
+            <option value="option3">Option 3</option>
+            </select>
+            <label for="fruits">Choose a fruit:</label>
+            <select id="fruits" name="fruits">
+            <optgroup label="Citrus">
+                <option value="orange">Orange</option>
+                <option value="lemon">Lemon</option>
+            </optgroup>
+            <optgroup label="Berries">
+                <option value="strawberry">Strawberry</option>
+                <option value="blueberry">Blueberry</option>
+            </optgroup>
+            </select>
+
+            <br>
+
+            <!-- Radio Buttons -->
+            <input type="radio" id="right" name="handedness" value="Right">
+            <label for="right">Right-handed</label><br/>
+
+            <input type="radio" id="left" name="handedness" value="Left">
+            <label for="left">Left-handed</label><br/>
+
+            <input type="radio" id="ambi" name="handedness" value="Ambi">
+            <label for="ambi">Ambidextrous</label><br/>
+
+            <br/>
+            <input type="submit"/>
+
+        </form>
+    
+    </body>
+</html>
