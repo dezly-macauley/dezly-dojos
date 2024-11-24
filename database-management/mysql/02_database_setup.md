@@ -160,3 +160,31 @@ _______________________________________________________________________________
 DROP DATABASE training_lab;
 ```
 _______________________________________________________________________________
+
+### How to import a database into MySQL/MariaDB
+
+I will be importing a database called:
+
+`employee.sql`
+
+There is also a test in the file in the repo.
+
+`test_employee_md5.sql`
+
+First make sure that you are in the directory where the file is and then run
+this command.
+
+```
+sudo mariadb < employee.sql
+```
+
+Rather use the default `mariadb` cli to avoid unexpected behavior
+when importing a database.
+
+To run the test file:
+
+```
+sudo mariadb -t < test_employee_md5.sql
+```
+
+_______________________________________________________________________________
