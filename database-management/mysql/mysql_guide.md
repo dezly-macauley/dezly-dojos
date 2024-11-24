@@ -1,95 +1,11 @@
 # MySQL Guide
 
-_______________________________________________________________________________
 
-### Run the secure installation on MySQL to secure your database access
-
-Run this command in the terminal
-```
-sudo mariadb-secure-installation
-
-```
-Note: MariaDB is a drop-in replacement for MySQL.
-
-_______________________________________________________________________________
-
-#### Follow the prompts
-
-1. Enter current password for root (enter for none): Press enter
-
-2. Switch to unix_socket authentication [Y/n]: Type `Y` and press Enter
-
-3. Change the root password? [Y/n]: Type `n` and press enter
-
-Do not set the root password as `unix_socket authentication` is more
-secure and does not expose the password in plain text.
-
-4. Remove anonymous users? [Y/n]: Type `Y` and press enter
-
-5. Disallow root login remotely? [Y/n] Type `Y` and press enter
-
-6. Remove test database and access to it? [Y/n]: Type `Y` and press enter
-
-7. Reload privilege tables now? [Y/n]: Type `Y` and press enter
-
-_______________________________________________________________________________
-
-### Login to MariaDB as a root user using `mycli`
-
-Note: mycli is a command that belongs to the `mycli` program. It is a better
-version of the `mariadb` cli that is part of the MySQL/MariaDB installation. 
-
-Now you can login with either with 
-`unix_socket authentication` (your Linux sudo password),
-or use the root password that you set for the MariaDB root user 
-during the installation.
-
-```
-sudo mycli -u root -h localhost
-```
-
-MariaDB root@localhost:(none)>
-
-You are now logged in to MariaDB as the `root` user and connection 
-that you are using is `localhost`. Which means that you are interacting
-with databases that are locally available on your computer.
-
-_______________________________________________________________________________
-
-### How to create a new user
-
-First make sure that you are logged in like this:
-
-MariaDB root@localhost:(none)>
-
-```
-CREATE USER 'dezly_macauley'@'localhost';
-```
-
-Underscores are preferred in SQL
-
-This will create a user called `dezly_macauley`
-that is connected to `localhost`.
-
-To verify that the user was created.
-
-```
-SELECT user, host FROM mysql.user;
-```
-
-_______________________________________________________________________________
-
-### Set the password for the user in a secure way
-
-First create a password for your user that you keep somewhere safe.
-
-Note: The following commands are run from the `zsh` shell,
-not the `mycli` shell:
+### Setup your terminal (I will be using Zsh)
 
 Add this to your .zshrc file (located in the home directory)
 
 ```sh
-
 alias zsh-clear-history="cat /dev/null > ~/.zsh_history\
 && rm -f ~/.zsh_history && touch ~/.zsh_history && exec zsh"
 
@@ -97,32 +13,74 @@ disable_history() {
     unset HISTFILE
     export HISTSIZE=0
 }
-
 ```
+Now you have access to the commands `zsh-clear-history` and `disable_history`
+
+You can run the command `history` to view your zsh_history
 
 _______________________________________________________________________________
 
-You can clear your zsh_history file with this command
+### Create a password for user that you will create later on
 
-```
-zsh-clear-history
-```
-_______________________________________________________________________________
+Keep this password somewhere safe (Like a password vault)
 
-Then run this command to ensure that any passwords
-entered in plain text won't be saved in the shell history.
-
-Run this command to prevent commands from being saved in your shell history.
-
+Then run this command:
 ```
 disable_history
 ```
+
+Then run these commands. This will store the password in a variable called
+$my
+```
+echo "Enter your password: "
+read -s my_password
+```
+
+Confirm that it worked:
+
+```
+echo $my_password
+```
 _______________________________________________________________________________
 
+### Create user using the root user account, the `mycli` program
+
 ```
-SET PASSWORD FOR 'dezly_macauley'@'localhost' = PASSWORD();
+sudo mycli -u root -e "CREATE USER 'dezly_macauley'@'localhost' IDENTIFIED BY '$my_password';"
 ```
 
+mycli -u 'root' -h 'localhost'
+
+
+Press `ctrl + l` to clear the terminal
+
+
+Press `ctrl + c` to clear the terminal
+
+_______________________________________________________________________________
+
+### Login as the created user
+
+```
+mycli -u dezly_macauley -h localhost
+```
+Your prompt will look like this now:
+
+MariaDB dezly_macauley@localhost:(none)>
+
+You are now logged in to MariaDB as the `dezly_macauley` user and connection 
+that you are using is `localhost`. Which means that you are interacting
+with databases that are locally available on your computer.
+
+The reason it says (none) is because you are not connected to any databases.
+This is fine for now.
+
+To neaten up the terminal after running some commands, do the following:
+
+To exit the shell press:
+```
+exit;
+```
 _______________________________________________________________________________
 
 ### How to view the available databases
@@ -144,6 +102,28 @@ analyzing MariaDB server performance.
 
 4. sys: A system database that provides performance and 
 operational insights about the server.
+
+
+#### How to create a database
+
+```
+CREATE DATABASE leaf_village;
+```
+
+#### How to use a database
+
+```
+USE leaf_village;
+```
+
+Your terminal prompt should change from this:
+
+> MariaDB root@localhost:(none)>
+
+To this:
+
+> MariaDB root@localhost:leaf_village>
+
 
 _______________________________________________________________________________
 
