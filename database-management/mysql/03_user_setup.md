@@ -128,6 +128,32 @@ GRANT ALL PRIVILEGES on employee.* to 'dezly_macauley'@'localhost';
 This will grant the user dezly_macauley, 
 all privileges on the database called `employee`.
 `.*` means all the tables in the employee database.
+
+_______________________________________________________________________________
+
+NOTE: You can limit privileges
+
+Instead of `employee.*` you could do `employee.name_of_table` 
+
+Instead of `GRANT ALL PRIVILEGES` you could do `GRANT SELECT, INSERT, DELETE`
+
+_______________________________________________________________________________
+
+### How to show what privileges as User has
+
+Login as root then run this:
+
+```
+SHOW GRANTS FOR 'dezly_macauley'@'localhost';
+```
+
+_______________________________________________________________________________
+
+### How to revoke the privileges of an account
+
+```
+REVOKE ALL PRIVILEGES on *.* from 'dezly_macauley'@'localhost';
+```
 _______________________________________________________________________________
 
 ### How to change the password of an account 
