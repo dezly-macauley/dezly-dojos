@@ -88,7 +88,7 @@ _______________________________________________________________________________
 E.g. View all columns from the `employee` table
 
 ```
-SELECT * FROM department limit 10;
+SELECT * FROM employee limit 10;
 ```
 
 The limit of 10 is so that is only shows the first 10 rows.
@@ -96,5 +96,48 @@ You want a limit because some tables may have thousands of records.
 
 _______________________________________________________________________________
 
+### How to display only specific columns
+
+```
+SELECT emp_no, first_name, last_name FROM employee limit 10;
+```
+
+_______________________________________________________________________________
+
+### How to display rows according to a specific criteria
+
+E.g. I want all columns where the employee number is 10003
+
+```
+SELECT * FROM employee WHERE emp_no = "10003";
+```
+
+```
+SELECT * FROM employee WHERE gender = 'M' and last_name = 'Bamford';
+```
+
+_______________________________________________________________________________
+
+### How to display the data in a specific order
+
+```
+SELECT * FROM employee ORDER BY hire_date ASC limit 10;
+```
+
+If you wanted it in descending order then do this.
+
+```
+SELECT * FROM employee ORDER BY hire_date DESC limit 10;
+```
+
+_______________________________________________________________________________
+
+### Pattern Matching
+
+```
+SELECT * FROM employee where birth_date like '%1952%' limit 10;
+```
+
+This will display all of the employees where `1952` appears somewhere in the birth date.
 
 _______________________________________________________________________________
