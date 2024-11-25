@@ -46,7 +46,7 @@ _______________________________________________________________________________
 ### How to insert data into a table 
 
 ```
-INSERT INTO department (dept_no, dept_name) values ('d012', 'AI Engineering');
+INSERT INTO department (dept_no, dept_name) VALUES ('d012', 'AI Engineering');
 ```
 _______________________________________________________________________________
 
