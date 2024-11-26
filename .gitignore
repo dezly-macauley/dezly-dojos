@@ -249,7 +249,7 @@ Homestead.json
 .phpunit.result.cache
 _______________________________________________________________________________
 
-# SECTION: JavaScript (TypeScript, Node)
+# SECTION: JavaScript (TypeScript, Node, Bun, React, Svelte)
 
 # Logs
 logs
