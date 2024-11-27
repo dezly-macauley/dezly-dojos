@@ -2,7 +2,7 @@
 // import './App.css'
 
 // NOTE: Import my React movie card component
-import { MovieCard } from './components/MovieCard'; 
+import { MovieCard } from './components/MovieCard';
 
 function App() {
 
@@ -35,10 +35,10 @@ function App() {
                 { movieNumber == 1 ? ():()}
 
             */}
-          
-            { movieNumber == 1 ? 
-                (<MovieCard movie={{title: "John Wick", release_date: "2014"}} />):
-                (<MovieCard movie={{title: "The Matrix", release_date: "1999"}} />) 
+
+            {movieNumber == 1 ?
+                (<MovieCard movie={{ title: "John Wick", release_date: "2014" }} />) :
+                (<MovieCard movie={{ title: "The Matrix", release_date: "1999" }} />)
             }
 
         </>
