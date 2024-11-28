@@ -1,6 +1,18 @@
 import { MovieCard } from "../components/MovieCard";
+import { useState } from "react";
 
-function Home() {
+
+export function Home() {
+
+    // NOTE: State Management
+    // This is when you want to keep track of some information and you want 
+    // a component to re-render (re-display) itself based on what the state
+    // is currently set to.
+    // E.g. I want to store what the user types in the input field.
+    // The syntax is:
+    // const [nameOfTheState, a function that will allow you to update the state] = useState("What you want the default value of the state to be");
+
+    const [searchQuery, setSearchQuery] = useState("");
 
     // An array of movies
     const movies = [
@@ -10,9 +22,34 @@ function Home() {
 
     ]
 
+    const handleSearch = (e) => {
+        
+        // This will stop the form from clearing the text in the input box 
+        // when you click the seach button
+        e.preventDefault()
+
+        // This will display an alert with the whatever was typed in the 
+        // search input.
+        alert(searchQuery)
+
+        setSearchQuery("")
+    }
     return(
         <div className="home">
-        
+
+        <form onSubmit={handleSearch} className="search-form">
+            <input 
+                type="text" 
+                placeholder="Search for movies..." 
+                className="search-input"
+                value={searchQuery}
+                onChange={
+                        (e) => setSearchQuery(e.target.value)
+                }
+            />
+            <button type="submit" className="search-btn">Search</button>
+        </form>
+
             <div className="movies-grid">
 
                {/* 
@@ -37,6 +74,16 @@ function Home() {
                     It will return the MovieCard React component, 
                     but it will use the contents of the movie object to fill
                     in the prop.
+
+                    In simple terms, it will display a React component for
+                    every movie object in the movies array.
+                    
+                    NOTE: key={movie.id}
+                    You need to add a key property for each component
+                    that is returned. This is to let React know which 
+                    component to update
+
+                    }
 
                */}
 
