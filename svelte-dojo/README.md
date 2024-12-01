@@ -1,3 +1,13 @@
 # Svelte Dojo
 
-If you have just installed this
+If you have just installed this, run this command:
+
+```
+bun install
+```
+
+_______________________________________________________________________________
+
+
+
+_______________________________________________________________________________

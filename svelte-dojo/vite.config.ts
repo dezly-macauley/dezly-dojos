@@ -3,5 +3,5 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 export default defineConfig({
     plugins: [svelte()],
-    root: "./src/01-basic-project-structure/",
+    root: "./src/03-dynamic-attributes/",
 })
