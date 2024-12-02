@@ -1,0 +1,15 @@
+/*
+    This will remove all of the default styles that the browser applies.
+    This is for predictable CSS results, and to avoid clashes with your
+    own custom CSS. 
+*/
+@import "../../../node_modules/modern-normalize/modern-normalize.css";
+
+/*
+    Apply a dark background, and light text.
+    This will make development easier on the eyes.
+*/
+body {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
