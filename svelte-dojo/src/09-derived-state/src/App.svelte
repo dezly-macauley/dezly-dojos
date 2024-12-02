@@ -7,12 +7,19 @@
 
 <script lang="ts">
 
-	let numbers: number[] = $state([1, 2, 3, 4]);
+	let numbers: number[] = $state([7, 3, 8]);
 
     // NOTE: This is derived state in action
+    // The `$derived()` rune is used on `total` because its value depends
+    // on the values of the state of the array `numbers`.
+
     let total: number = $derived(
         numbers.reduce(
-            (t,n) => t + n, 0
+
+            (accumulator: number, element: number) => {
+
+                return accumulator + element;
+            }, 0
         )
     );
 
@@ -21,7 +28,7 @@
 	}
 </script>
 
-<p>{numbers.join(' + ')} = ...</p>
+<p>{numbers.join(' + ')} = {total}</p>
 
 <button onclick={addNumber}>
 	Add a number

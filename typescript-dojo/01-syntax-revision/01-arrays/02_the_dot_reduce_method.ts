@@ -40,11 +40,9 @@ const totalScore: number = listOfScores.reduce(
         // For each number add the element to the accumulator
         return accumulator + element;
 
-    },
-
+    }, 0
     // NOTE: Don't forget to set the initial value of the accumulator
     // In this case it starts at 0
-    0
 );
 
 console.log(totalScore);
