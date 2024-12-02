@@ -8,19 +8,22 @@
     // entire array and update the User Interface automatically without having
     // to reassign the entire object or array.
 
-	let numbers: number[] = $state([13, 12, 33, 7]);
+	let numbers: number[] = $state([15]);
 
 	function addNumber() {
-        numbers.push(numbers.length + 10)
+        numbers.push((numbers.length) * 2);
 	}
 </script>
 
 <!-- 
     This is just regular JavaScript
-    Each element in the array will be displayed and separated by a `+`
+    Each element in the array will be displayed and separated by a `,`
 -->
-<p>{numbers.join(" + ")}</p>
+<p>
+    The list of numbers is:<br>
+    {numbers.join(" , ")}
+</p>
 
 <button onclick={addNumber}>
-	Add a number
+	Add a number to the list
 </button>
