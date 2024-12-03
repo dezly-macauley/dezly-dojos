@@ -7,12 +7,36 @@
     <title>Vite + TS</title>
   </head>
   <body>
+
+    <!------------------------------------------------------------------------>
+   
+    <!-- SECTION: How to add TypeScript and JavaScript to an html file -->
+    
     <!-- <div id="app"></div> -->
     <!-- <script type="module" src="/src/main.ts"></script> -->
 
+    <!-- NOTE: How to add Inline JavaScript -->
     <script>
-        console.log("hello world");
+        console.log("hello world from inline JavaScript");
+
+        console.log("hey there");
+
+        // This will be shown with red text
+        console.error("this is an error")
+
+        // This will be shown with yellow text
+        console.warn("this is a warning")
     </script>
+
+    <!-- NOTE: How to add a TypeScript File when using Vite -->
+    <script type="module" src="./example.ts"></script>
+
+    <!-- NOTE: If it was for a JavaScript File then do this -->
+    <script src="./example.js" type="text/javaScript"></script>
+
+
+
+    <!------------------------------------------------------------------------>
     
   </body>
 </html>
