@@ -34,17 +34,29 @@
     // This controls how quickly the the value 
     // of the variable `elapsed` increases.
     // I.e. this is the speed controller
+    // Currently it it set to 1000 milliseconds
 	let interval: number = $state(1000);
 
-	$effect(() => {
-		const id = setInterval(() => {
-			elapsed += 1;
-		}, interval);
+    // NOTE: The $effect() rune
+    // This is the syntax:
+    // $effect(() => { });
 
-		return () => {
-			clearInterval(id);
-		};
-	});
+    // Think of the $effect rune as a special function that will automatically
+    // run whenever the reactive state inside changes. 
+
+    // It's like telling Svelte, 
+    // "Run this function whenever something in the 
+    // component changes that we care about."
+
+	// $effect(() => {
+	// 	const id = setInterval(() => {
+	// 		elapsed += 1;
+	// 	}, interval);
+	//
+	// 	return () => {
+	// 		clearInterval(id);
+	// 	};
+	// });
 
 
 </script>
