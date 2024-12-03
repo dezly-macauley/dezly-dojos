@@ -26,9 +26,15 @@
     for example, that’s almost always preferable.
 -->
 
-<script>
-	let elapsed = $state(0);
-	let interval = $state(1000);
+<script lang="ts">
+
+    // Keeps track of how much time has passed
+	let elapsed: number = $state(0);
+    
+    // This controls how quickly the the value 
+    // of the variable `elapsed` increases.
+    // I.e. this is the speed controller
+	let interval: number = $state(1000);
 
 	$effect(() => {
 		const id = setInterval(() => {
@@ -39,6 +45,8 @@
 			clearInterval(id);
 		};
 	});
+
+
 </script>
 
 <button onclick={() => interval /= 2}>speed up</button>
