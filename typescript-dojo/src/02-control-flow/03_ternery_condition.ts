@@ -14,3 +14,27 @@ console.log(batmobile_message);
 // assigned to the variable "batmobile_message"
 
 //_____________________________________________________________________________
+
+// NOTE: Another example:
+
+let shopStatus = "OPEN";
+
+function toggleshopStatus() {
+
+    // NOTE: `?` This is the ternary operator
+    // It is a shorthand for an if else statement.
+    // The syntax is:
+    // variableName = (condition) ? valueIfTrue : valueIfFalse;
+
+    shopStatus = (shopStatus === "OPEN") ? "CLOSED" : "OPEN";
+
+    // If shopStatus is "OPEN" then this function will set the value to "CLOSED"
+    // and vice versa.
+
+}
+
+console.log(shopStatus);
+toggleshopStatus();
+console.log(shopStatus);
+
+//_____________________________________________________________________________
