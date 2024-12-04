@@ -34,6 +34,8 @@ for (let value of listOfScores) {
 // NOTE: 
 // If you wanted the index of each value as well then you need to use
 // listOfScores.entries() and not just listOfScores
+// also remember to use `of` and not in 
+// or you will get some unexpected results
 
 for (let [index, value] of listOfScores.entries()) {
     console.log(index, value);
