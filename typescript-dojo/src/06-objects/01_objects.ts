@@ -1,7 +1,13 @@
 // NOTE: Object
 
-let person = {
-    name: "John",
+type Person = {
+  userName: string;
+  age: number;
+  city: string;
+};
+
+let person: Person = {
+    userName: "John",
     age: 30,
     city: "Japan"
 }
