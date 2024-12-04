@@ -21,6 +21,30 @@ for (let floor_number: number = 1; floor_number <= 3; floor_number++) {
 
 //_____________________________________________________________________________
 
+// NOTE: A simpler way to print the values of an array
+
+const listOfScores: number[] = [27, 81, 32];
+
+for (let value of listOfScores) {
+    console.log(value);
+}
+
+//_____________________________________________________________________________
+
+// NOTE: 
+// If you wanted the index of each value as well then you need to use
+// listOfScores.entries() and not just listOfScores
+
+for (let [index, value] of listOfScores.entries()) {
+    console.log(index, value);
+}
+
+// 0 27
+// 1 81
+// 2 32
+
+//_____________________________________________________________________________
+
 // NOTE: While loop
 
 let cookies_in_jar: number = 4; 
