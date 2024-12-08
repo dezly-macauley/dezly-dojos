@@ -43,6 +43,14 @@ _______________________________________________________________________________
 5. Gwei Wei Eth
 6. Send Tx
 7. Reverts
+8. Chainlink
+9. Mid Recap
+10. Chainlink in Vyper
+11. ABI 
+12. In Line Inter
+13. Staticcall
+14. Tenderly
+15. Ai
 
 _______________________________________________________________________________
 ## Section 3 - Ai
