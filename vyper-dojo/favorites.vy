@@ -3,6 +3,28 @@
 
 #______________________________________________________________________________
 
+# SECTION: Storage Variable
+
+# NOTE: public() makes the visibility of the variable public
+# By default, the visibility of storage variables is 
+# internal()
+
+# The default value of uint256 is 0
+my_favorite_number: public(uint256)
+
+#______________________________________________________________________________
+
+# SECTION: Reference Types
+
+# This is a fixed-size array. It can store a max of 5 unsigned integers
+# The default value is [0, 0, 0, 0, 0]
+list_of_numbers: public(uint256[5])
+
+index: public(uint256)
+
+
+#______________________________________________________________________________
+
 # SECTION: Constructor
 
 # NOTE: A constructor is a special function that 
@@ -17,17 +39,7 @@
 @deploy
 def __init__():
     self.my_favorite_number = 7
-
-#______________________________________________________________________________
-
-# SECTION: Storage Variable
-
-# NOTE: public() makes the visibility of the variable public
-# By default, the visibility of storage variables is 
-# internal()
-
-# The default value of uint256 is 0
-my_favorite_number: public(uint256)
+    self.index = 0
 
 #______________________________________________________________________________
 
@@ -59,5 +71,13 @@ def store(new_number: uint256):
 @view
 def retrieve() -> uint256:
     return self.my_favorite_number
+
+#______________________________________________________________________________
+
+@external
+def add_number(favorite_number: uint256):
+    self.list_of_numbers[self.index] = favorite_number
+    # Increase the index by one
+    self.index += 1
 
 #______________________________________________________________________________
