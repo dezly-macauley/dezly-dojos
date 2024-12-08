@@ -30,6 +30,20 @@ _______________________________________________________________________________
 27. Share
 28. Evm
 29. Pure and View
+30. Conditionals
+31. Workshop Pt. 2.
+32. Recap
+_______________________________________________________________________________
+## Section 2 - Remix Coffee
+
+1. Introduction
+2. Setup
+3. Doc strings
+4. Sending Eth
+5. Gwei Wei Eth
+6. Send Tx
+7. Reverts
+
 _______________________________________________________________________________
 ## Section 3 - Ai
 1. Intro

@@ -50,7 +50,7 @@ name_to_favorite_number: public(HashMap[String[100], uint256])
 
 @deploy
 def __init__():
-    self.my_favorite_number = 7
+    self.my_favorite_number = 15
     self.index = 0
     self.my_name = "Dezly"
 
@@ -114,5 +114,11 @@ def add_person(name: String[100], favorite_number: uint256):
 
     # Increase the index by one
     self.index += 1
+
+#______________________________________________________________________________
+
+@external
+def add():
+    self.favorite_number =+ 1
 
 #______________________________________________________________________________

@@ -4,11 +4,15 @@
 
 # SECTION: Visibility of functions
 
-# @pure - this means that it does not read any state and global variables
-# @view - read state and global variables
+# @pure - The function does not modify storage variables or need to read them.
+# @view - THe function only reads state and global variables
+
+# @internal - This is the default. The function can only be called within 
+# the contract
 
 # @external - The function can be called from outside this file
-# @internal - This is the default
+# @payable - The function can receive funding (crypto currency) that will
+# be stored at the address of the smart contract.
 
 #______________________________________________________________________________
 

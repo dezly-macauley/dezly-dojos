@@ -1,8 +1,6 @@
 # pragma version 0.4.0
 # @license MIT
 
-# This is how to make a comment in Vyper
-
 # NOTE: `pragma version`
 # This is how you tell the Vyper compiler what version of Vyper to use
 # to compile your code.
@@ -10,6 +8,17 @@
 # NOTE: `@license MIT`
 # This tells the world what license your code is under.
 # MIT means the code is open source
+# This is how to make a comment in Vyper
+
+#______________________________________________________________________________
+# NOTE: Comments
+
+# This is a single line comment
+
+"""
+    This is a multiline comment in Vyper.
+    It can span multiple lines and is often used for documentation purposes.
+"""
 
 #______________________________________________________________________________
 
@@ -52,10 +61,10 @@ name: String[100]
 # To use this you will need to enable it in the compiler
 # --enable-decimals
 
-______________________________________________________________________________
+#______________________________________________________________________________
 
 # SECTION: Bytes
 
 # my_bytes: bytes32
 
-______________________________________________________________________________
+#______________________________________________________________________________
