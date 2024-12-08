@@ -21,6 +21,15 @@ _______________________________________________________________________________
 18. Ref Types
 19. Claude 
 20. Array Lists
+21. Structs and Strings
+22. Workshop
+23. Hash Map
+24. Recap
+25. Tenderly
+26. Zksync
+27. Share
+28. Evm
+29. Pure and View
 _______________________________________________________________________________
 ## Section 3 - Ai
 1. Intro

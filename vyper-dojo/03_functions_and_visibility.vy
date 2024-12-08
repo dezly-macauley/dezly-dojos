@@ -1,5 +1,17 @@
 # pragma version ^0.4.0
 
+#______________________________________________________________________________
+
+# SECTION: Visibility of functions
+
+# @pure - this means that it does not read any state and global variables
+# @view - read state and global variables
+
+# @external - The function can be called from outside this file
+# @internal - This is the default
+
+#______________________________________________________________________________
+
 @external
 @pure
 def multiply(x: uint256, y: uint256) -> uint256:
