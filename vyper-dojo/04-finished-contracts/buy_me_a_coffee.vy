@@ -35,14 +35,22 @@ interface AggregatorV3Interface:
 # SECTION: Storage Variables
 
 minimum_usd: uint256
+price_feed: AggregatorV3Interface
+
+# NOTE: Price Feeds
+
+# Sepolia Testnet - ETH to USD
+# 0x694AA1769357215DE4FAC081bf1f309aDC325306
 
 #______________________________________________________________________________
 
 # SECTION: Contract Setup
 
 @deploy
-def __init__():
-    self.minimum_usd = 5
+def __init__(price_feed_address: address):
+    # This is just a shortcut for adding the 18 decimal places
+    self.minimum_usd = as_wei_value(5, "ether")
+    self.price_feed = AggregatorV3Interface(price_feed_address)
 
 #______________________________________________________________________________
 
@@ -51,7 +59,8 @@ def __init__():
 @external
 @payable
 def fund():
-    assert msg.value >= self.minimum_usd, "You need to send at least $5"
+    usd_value_of_eth: uint256 = self._get_eth_to_usd_rate(msg.value)
+    assert usd_value_of_eth >= self.minimum_usd, "You need to send at least $5"
 
     # NOTE: Converting ETH to WEI
 
@@ -83,25 +92,13 @@ def withdraw():
 # SECTION: Function 3 - Converting ETH to USD
 
 @internal
-# The underscore is how you annotate internal functions
-def _get_eth_to_usd_rate():
-    pass
-
-#______________________________________________________________________________
-# SECTION: Function 4 - Get the price of ETH to USD
-
-# The amount is an int256, and the last 8 numbers are decimals
-
-# NOTE: How to use the `latestAnswer` function from the AggregatorV3Interface
-
-@external
 @view
-def get_price() -> int256:
-    price_feed: AggregatorV3Interface = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306)
-    return staticcall price_feed.latestAnswer()
+# The underscore is how you annotate internal functions
+def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
 
-    # NOTE: How to read the `latestAnswer` value
-
+    # SUB_SECTION: Step 1 - Get the raw price format 
+    # of 1 ETH to USD (8 decimals) from the price feed
+    price: int256 = staticcall self.price_feed.latestAnswer()
     # If you go to the contract address and call the `decimals` functions
     # It will show 8 decimals. This means that the last 8 degits of get price
     # decimals
@@ -109,6 +106,18 @@ def get_price() -> int256:
     # E.g. If latest price = 395576000000
     # That means $3,955.76000000
 
+    # SUB_SECTION: Step 2 - Convert the raw price (8 decimals) to
+    # 1 ETH in USD (18 decimal places) 
+    eth_price: uint256 = convert(price, uint256) * (10 ** 10)
+    # This because 1 ETH = 1 x 10^18 WEI 
+    # So you need to add 10 extra decimal places
+    # And finally you have to convert the types
+    # `convert(price, uint256)` is how you convert a variable 
+    # to uint256 in Vyper
+
+    # SUB_SECTION: Step 3 - Use the eth price to convert the ETH amount
+    # that was entered into the function
+    
     # NOTE: staticcall vs extcall
 
     # use this keyword when you are calling a function that is on
@@ -118,4 +127,29 @@ def get_price() -> int256:
     # If you were calling a function that modifies the state of the other
     # contract then you would use the keyword `extcall`
     #return staticcall price_feed.latestAnswer()
+    eth_amount_in_usd: uint256 = (eth_amount * eth_price) // (1 * (10 ** 18))
+    return eth_amount_in_usd
+
+#______________________________________________________________________________
+# SECTION: Function 4 - Get the price of ETH to USD
+
+# The amount is an int256, and the last 8 numbers are decimals
+
+# NOTE: How to use the `latestAnswer` function from the AggregatorV3Interface
+
+# @external
+# @view
+# def get_price() -> int256:
+#    price_feed: AggregatorV3Interface = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306)
+#    return staticcall price_feed.latestAnswer()
+
+#______________________________________________________________________________
+# SECTION: Function 5 - A function that calls another function
+# This will allow the _get_eth_to_usd_rate to be called
+
+@external
+@view
+def get_eth_to_usd_rate(eth_amount_in_usd: uint256) -> uint256:
+    return self._get_eth_to_usd_rate(eth_amount_in_usd)
+
 #______________________________________________________________________________
