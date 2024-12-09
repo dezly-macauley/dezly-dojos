@@ -15,11 +15,6 @@
 
 # This is a single line comment
 
-"""
-    This is a multiline comment in Vyper.
-    It can span multiple lines and is often used for documentation purposes.
-"""
-
 #______________________________________________________________________________
 
 # SECTION:: bool 
