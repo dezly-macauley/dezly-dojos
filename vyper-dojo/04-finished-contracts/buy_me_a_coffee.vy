@@ -45,6 +45,15 @@ price_feed: AggregatorV3Interface
 # Sepolia Testnet - ETH to USD
 # 0x694AA1769357215DE4FAC081bf1f309aDC325306
 
+# TODO: Add a limit to prevent new items from being added to the array when
+# it hits 100 users
+funders: public(DynArray[address, 1000])
+
+# A hashmap to keep track of how much each funder sent
+# Key: The wallet address of the funder
+# Value: The amount they sent
+funder_to_amount_funded: public(HashMap[address, uint256])
+
 #______________________________________________________________________________
 
 # SECTION: Contract Setup
@@ -67,6 +76,12 @@ def __init__(price_feed_address: address):
 def fund():
     usd_value_of_eth: uint256 = self._get_eth_to_usd_rate(msg.value)
     assert usd_value_of_eth >= self.minimum_usd, "You need to send at least $5"
+
+    # Add the wallet address of the person who called the function `fund`,
+    # to the the funders array.
+    self.funders.append(msg.sender)
+    
+    self.funder_to_amount_funded[msg.sender] += msg.value
 
     # NOTE: Converting ETH to WEI
 
@@ -129,6 +144,8 @@ def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
 
     # SUB_SECTION: Step 3 - Use the eth price to convert the ETH amount
     # that was entered into the function
+    eth_amount_in_usd: uint256 = (eth_amount * eth_price) // (1 * (10 ** 18))
+    return eth_amount_in_usd
     
     # NOTE: staticcall vs extcall
 
@@ -139,8 +156,6 @@ def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
     # If you were calling a function that modifies the state of the other
     # contract then you would use the keyword `extcall`
     #return staticcall price_feed.latestAnswer()
-    eth_amount_in_usd: uint256 = (eth_amount * eth_price) // (1 * (10 ** 18))
-    return eth_amount_in_usd
 
 #______________________________________________________________________________
 # SECTION: Function 4 - Get the price of ETH to USD
