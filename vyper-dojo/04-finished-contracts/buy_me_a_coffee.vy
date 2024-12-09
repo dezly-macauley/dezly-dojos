@@ -1,13 +1,17 @@
 # pragma version 0.4.0
-# @ licence: MIT
-# @ author: Dezly Macauley
+# @title Buy Me A Coffee
+# @author Dezly Macauley
+# @license MIT 
 #______________________________________________________________________________
+
+"""
 # ABOUT: Buy Me A Coffee
 
-# 1. Receive funds from users
-# 2. There should be a minimum amount that users can send
-# 3. Withdraw funds
+1. Receive funds from users
+2. There should be a minimum amount that users can send
+3. Withdraw funds
 
+"""
 #______________________________________________________________________________
 
 # SECTION: interfaces
@@ -29,14 +33,22 @@ interface AggregatorV3Interface:
 # SECTION: Storage Variables
 
 minimum_usd: uint256
+price_feed: AggregatorV3Interface
+
+# NOTE: Price Feed Addresses
+
+
+# Sepolia Testnet - ETH to USD:
+# 0x694AA1769357215DE4FAC081bf1f309aDC325306
 
 #______________________________________________________________________________
 
 # SECTION: Constructor
 
 @deploy
-def __init__():
+def __init__(price_feed_address: address):
     self.minimum_usd = 5
+    self.price_feed = AggregatorV3Interface(price_feed_address)
 
 #______________________________________________________________________________
 
@@ -90,11 +102,9 @@ def _get_eth_to_usd_rate():
 
 # NOTE: How to use the `latestAnswer` function from the AggregatorV3Interface
 
-@external
-@view
-def get_price() -> int256:
-    price_feed: AggregatorV3Interface\
-    = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306)
+# @external
+# @view
+# def get_price() -> int256:
 
     # NOTE: staticcall vs extcall
 
@@ -104,7 +114,7 @@ def get_price() -> int256:
     # E.g. latestAnswer() is a view function. Check the interface
     # If you were calling a function that modifies the state of the other
     # contract then you would use the keyword `extcall`
-    return staticcall price_feed.latestAnswer()
+    #return staticcall price_feed.latestAnswer()
 
 #______________________________________________________________________________
 
