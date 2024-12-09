@@ -93,6 +93,11 @@ def fund():
 @external
 def withdraw():
     assert msg.sender == self.owner, "Error: You do not have permission to withdraw"
+    # This is the syntax of Vypers built in send method 
+    # send(to: address, value: uint256, gas: uint256 =0)
+    # self.balance means the balance of the smart contract
+   
+    send(self.owner, self.balance)
     self.has_withdrawn_funds = True
 
 #______________________________________________________________________________
