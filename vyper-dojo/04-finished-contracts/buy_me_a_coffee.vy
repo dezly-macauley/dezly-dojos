@@ -34,6 +34,9 @@ interface AggregatorV3Interface:
 
 # SECTION: Storage Variables
 
+owner: public(address)
+has_withdrawn_funds: public(bool)
+
 minimum_usd: uint256
 price_feed: AggregatorV3Interface
 
@@ -51,6 +54,9 @@ def __init__(price_feed_address: address):
     # This is just a shortcut for adding the 18 decimal places
     self.minimum_usd = as_wei_value(5, "ether")
     self.price_feed = AggregatorV3Interface(price_feed_address)
+    # Whoever sends the contract is going to be the owner
+    self.owner = msg.sender
+    self.has_withdrawn_funds = False
 
 #______________________________________________________________________________
 
@@ -86,7 +92,8 @@ def fund():
 
 @external
 def withdraw():
-    pass
+    assert msg.sender == self.owner, "Error: You do not have permission to withdraw"
+    self.has_withdrawn_funds = True
 
 #______________________________________________________________________________
 # SECTION: Function 3 - Converting ETH to USD
