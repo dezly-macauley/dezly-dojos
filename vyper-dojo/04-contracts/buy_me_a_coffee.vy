@@ -115,6 +115,15 @@ def withdraw():
     send(self.owner, self.balance)
     self.has_withdrawn_funds = True
 
+    # Use the wallet addresses stored in the funders array to reset 
+    # the hashmap
+    for funder_address: address in self.funders:
+        self.funder_to_amount_funded[funder_address] = 0
+
+    # Reset the funders array which contains all of the addresses
+    # of the various funders
+    self.funders = []
+
 #______________________________________________________________________________
 # SECTION: Function 3 - Converting ETH to USD
 
