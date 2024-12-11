@@ -34,7 +34,9 @@ VAL: public(immutable(uint256))
 
 @deploy
 def __init__(val: uint256):
-    # For immutables you don't use `self.`
+    # NOTE: For immutables, and constantyou don't use `self.` when referening
+    # to them. This is because constants and immutables 
+    # are not storage variables
     # Just use the variable name
     OWNER = msg.sender
     VAL = val 

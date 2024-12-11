@@ -31,17 +31,29 @@ interface AggregatorV3Interface:
 # https://sepolia.etherscan.io/address/0x694AA1769357215DE4FAC081bf1f309aDC325306#readContract
 
 #______________________________________________________________________________
+# SECTION: Constants and immutables
+
+# The person who deploys the contract is the owner
+# Only the owner will be allowed to withdraw funds from the smart contract
+OWNER: public(immutable(address))
+
+# The address of the Chainlink smart contract that will be used to get the
+# latest price
+PRICE_FEED: public(immutable(AggregatorV3Interface))
+
+# This output should be represented with same amout of decimals as WEI
+# That's 18 decimals
+# 1 ETH = 1 x 10^18
+# 5 000 000 000 000 000 000
+MINIMUM_USD: public(constant(uint256)) = as_wei_value(5, "ether")
+
+PRECISION: constant(uint256) = 1 * (10 ** 8)
+
+#______________________________________________________________________________
 
 # SECTION: Storage Variables
 
-owner: public(address)
 has_withdrawn_funds: public(bool)
-
-# This output should be represented with same amout of digits as WEI
-# 5 000 000 000 000 000 000
-minimum_usd: public(uint256)
-
-price_feed: public(AggregatorV3Interface)
 
 # NOTE: Price Feeds
 
@@ -64,10 +76,9 @@ funder_to_amount_funded: public(HashMap[address, uint256])
 @deploy
 def __init__(price_feed_address: address):
     # This is just a shortcut for adding the 18 decimal places
-    self.minimum_usd = as_wei_value(5, "ether")
-    self.price_feed = AggregatorV3Interface(price_feed_address)
+    PRICE_FEED = AggregatorV3Interface(price_feed_address)
     # Whoever sends the contract is going to be the owner
-    self.owner = msg.sender
+    OWNER = msg.sender
     self.has_withdrawn_funds = False
 
 #______________________________________________________________________________
@@ -78,7 +89,7 @@ def __init__(price_feed_address: address):
 @payable
 def fund():
     usd_value_of_eth: uint256 = self._get_eth_to_usd_rate(msg.value)
-    assert usd_value_of_eth >= self.minimum_usd, "You need to send at least $5"
+    assert usd_value_of_eth >= MINIMUM_USD, "You need to send at least $5"
 
     # Add the wallet address of the person who called the function `fund`,
     # to the the funders array.
@@ -110,12 +121,12 @@ def fund():
 
 @external
 def withdraw():
-    assert msg.sender == self.owner, "Error: You do not have permission to withdraw"
+    assert msg.sender == OWNER, "Error: You do not have permission to withdraw"
     # This is the syntax of Vypers built in send method 
     # send(to: address, value: uint256, gas: uint256 =0)
     # self.balance means the balance of the smart contract
    
-    send(self.owner, self.balance)
+    send(OWNER, self.balance)
     self.has_withdrawn_funds = True
 
     # Use the wallet addresses stored in the funders array to reset 
@@ -137,7 +148,7 @@ def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
 
     # SUB_SECTION: Step 1 - Get the raw price format 
     # of 1 ETH to USD (8 decimals) from the price feed
-    price: int256 = staticcall self.price_feed.latestAnswer()
+    price: int256 = staticcall PRICE_FEED.latestAnswer()
     # If you go to the contract address and call the `decimals` functions
     # It will show 8 decimals. This means that the last 8 degits of get price
     # decimals
@@ -156,7 +167,7 @@ def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
 
     # SUB_SECTION: Step 3 - Use the eth price to convert the ETH amount
     # that was entered into the function
-    eth_amount_in_usd: uint256 = (eth_amount * eth_price) // (1 * (10 ** 18))
+    eth_amount_in_usd: uint256 = (eth_amount * eth_price) // PRECISION
     return eth_amount_in_usd
     
     # NOTE: staticcall vs extcall
@@ -167,7 +178,7 @@ def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
     # E.g. latestAnswer() is a view function. Check the interface
     # If you were calling a function that modifies the state of the other
     # contract then you would use the keyword `extcall`
-    #return staticcall price_feed.latestAnswer()
+    #return staticcall PRICE_FEED.latestAnswer()
 
 #______________________________________________________________________________
 # SECTION: Function 4 - Get the price of ETH to USD
@@ -179,8 +190,8 @@ def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
 # @external
 # @view
 # def get_price() -> int256:
-#    price_feed: AggregatorV3Interface = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306)
-#    return staticcall price_feed.latestAnswer()
+#    PRICE_FEED: AggregatorV3Interface = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306)
+#    return staticcall PRICE_FEED.latestAnswer()
 
 #______________________________________________________________________________
 # SECTION: Function 5 - A function that calls another function
