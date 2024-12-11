@@ -1,9 +1,30 @@
 # pragma version 0.4.0
-# @license MIT
+
+"""
+@title      Buy Me A Coffee
+@notice     A contract for receiving funds
+
+@license    MIT
+@author     Dezly Macauley
+
+@dev
+    This contract should be able to perform the following tasks:
+
+    1. Allow people to send funds to the contract
+    2. Set a mininum amout that users can send to prevent spam
+    3. Keep track of the wallet addresses of those who send funds
+    to the contract.
+    4. Allow the owner (the person who deployed the contract), to be able
+    to withdraw the balance of the entire contract... BUT only after they have
+    been verified to be the owner.
+"""
 
 # NOTE: `pragma version`
 # This is how you tell the Vyper compiler what version of Vyper to use
 # to compile your code.
+
+# NOTE: Natspec
+# This is text within triple qoutes that appears at the top of the contract.
 
 # NOTE: `@license MIT`
 # This tells the world what license your code is under.

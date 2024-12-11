@@ -37,8 +37,11 @@ interface AggregatorV3Interface:
 owner: public(address)
 has_withdrawn_funds: public(bool)
 
-minimum_usd: uint256
-price_feed: AggregatorV3Interface
+# This output should be represented with same amout of digits as WEI
+# 5 000 000 000 000 000 000
+minimum_usd: public(uint256)
+
+price_feed: public(AggregatorV3Interface)
 
 # NOTE: Price Feeds
 
