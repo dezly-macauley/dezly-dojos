@@ -88,6 +88,11 @@ def __init__(price_feed_address: address):
 @external
 @payable
 def fund():
+    self._fund()
+
+@internal
+@payable
+def _fund():
     usd_value_of_eth: uint256 = self._get_eth_to_usd_rate(msg.value)
     assert usd_value_of_eth >= MINIMUM_USD, "You need to send at least $5"
 
@@ -125,8 +130,16 @@ def withdraw():
     # This is the syntax of Vypers built in send method 
     # send(to: address, value: uint256, gas: uint256 =0)
     # self.balance means the balance of the smart contract
-   
-    send(OWNER, self.balance)
+  
+    # NOTE: This is not the best pratice security there is a better way to 
+    # send... Why?
+    #send(OWNER, self.balance)
+    
+    # NOTE: raw_call is the better way
+    # The synax is (Who to send it to, b"data to send", How much to send)
+    raw_call(OWNER, b"", value = self.balance)
+
+
     self.has_withdrawn_funds = True
 
     # Use the wallet addresses stored in the funders array to reset 
@@ -201,5 +214,17 @@ def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
 @view
 def get_eth_to_usd_rate(eth_amount_in_usd: uint256) -> uint256:
     return self._get_eth_to_usd_rate(eth_amount_in_usd)
+
+#______________________________________________________________________________
+# SECTION: Fallback function
+
+# If someone tries to send funds to the smart contract without using the
+# fund() function, this function will trigger the external fund() function
+# which will then triger the internal _fund function
+
+@external
+@payable
+def __default__():
+    self._fund()
 
 #______________________________________________________________________________
