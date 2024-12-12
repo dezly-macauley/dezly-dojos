@@ -1,6 +1,31 @@
 # Dezly Training Labs
 _______________________________________________________________________________
 
+
+        Low-Level Systems Programming:
+        --rust
+
+        Back-End Development:
+        --go
+        --python
+        
+        Web3:
+        --vyper
+        --solidity
+        
+        Front-End Development:
+        --svelte
+        --typescript
+        --tailwind-css
+        
+        Database Management:
+        --mysql
+        
+        Scripting:
+        --lua
+        --bash
+        "
+
 ## Low-Level Systems Programming
 
 <img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/rust.svg" width="50" height="50" />
