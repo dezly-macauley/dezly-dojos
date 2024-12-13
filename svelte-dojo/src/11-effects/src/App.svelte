@@ -29,6 +29,7 @@
 <script lang="ts">
 
     // Keeps track of how much time has passed
+    // This will start with a default value of 0
 	let elapsed: number = $state(0);
     
     // This controls how quickly the the value 
@@ -48,21 +49,32 @@
     // "Run this function whenever something in the 
     // component changes that we care about."
 
-	// $effect(() => {
-	// 	const id = setInterval(() => {
-	// 		elapsed += 1;
-	// 	}, interval);
-	//
-	// 	return () => {
-	// 		clearInterval(id);
-	// 	};
-	// });
+	$effect(() => {
+       
+        
+		const id = setInterval(
+            () => {
+                // set interval will increase the value of elapsed by 1
+                // afer a certain delay. The delay is the variable `interval`
+			    elapsed += 1;
+            }, interval
+        );
+
+		return () => {
+            // This is used to clean up the interval whenever the effect is
+            // re-run or the the component is destroyed. This prevents memory
+            // leaks or by clearing any previous intervals that were set.
+            // It prevents multiple intervals from running at once.
+			clearInterval(id);
+		};
+
+	});
 
 
 </script>
 
-<button onclick={() => interval /= 2}>speed up</button>
-<button onclick={() => interval *= 2}>slow down</button>
+<button onclick={() => interval /= 2}>Double Interval Speed</button>
+<button onclick={() => interval *= 2}>Halve Interval Speed</button>
 
 <p>elapsed: {elapsed}</p>
 
