@@ -1,4 +1,4 @@
-# import boa
+import boa
 
-# print(boa.eval("empty(uint256)")) 
+print(boa.eval("empty(uint256)"))
 #0
