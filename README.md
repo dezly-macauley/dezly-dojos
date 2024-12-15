@@ -1,6 +1,6 @@
 # Dezly Dojos
 <img src="./00-images/dojo_couple.jpg" width="250" height="200"/>
-<img src="./00-images/dojo_breeze.gif" width="400" height="200"/>
+<img src="./00-images/dojo_breeze.gif" width="350" height="200"/>
 
 _______________________________________________________________________________
 ### Database Mangement
