@@ -1,96 +1,59 @@
-# Dezly Training Labs
-_______________________________________________________________________________
-
-
-        Low-Level Systems Programming:
-        --rust
-
-        Back-End Development:
-        --go
-        --python
-        
-        Web3:
-        --vyper
-        --solidity
-        
-        Front-End Development:
-        --svelte
-        --typescript
-        --tailwind-css
-        
-        Database Management:
-        --mysql
-        
-        Scripting:
-        --lua
-        --bash
-        "
-
-## Low-Level Systems Programming
-
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/rust.svg" width="50" height="50" />
-
-### Rust
-**1. Vanilla Rust**
+# Dezly Dojos
+<img src="./00-images/dojo_couple.jpg" width="250" height="200"/>
+<img src="./00-images/dojo_breeze.gif" width="400" height="200"/>
 
 _______________________________________________________________________________
+### Database Mangement
+<img src="./00-images/sqlite.png" width="50" height="50"/>
 
-
-## High Performance Back-End Development
-
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/go.svg" width="50" height="50" />
-
-### Go
-**1. Vanilla Go**
-
+1. **SQLite**
 _______________________________________________________________________________
+### Low-Level Systems Programming
+<img src="./00-images/rust.png" width="50" height="50"/>
 
-## Artificial Intelligence
-
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/python.svg" width="50" height="50" />
-
-### Python
-**1. Vanilla Python**
-
+1. **Rust**
 _______________________________________________________________________________
+### Back-End Development & AI
+<img src="./00-images/go.png" width="50" height="50"/>
+<img src="./00-images/python.png" width="50" height="50"/>
 
-## Rapid Development
-
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/laravel.svg" width="50" height="50" />
-
-### PHP
-**1. Laravel**
+1. **Go**
+2. **Python**
 _______________________________________________________________________________
+### Web3
+<img src="./00-images/vyper.png" width="50" height="50"/>
+<img src="./00-images/moccasin.png" width="50" height="50"/>
 
-## Database Management
-
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/postgresql.svg" width="50" height="50" />
-
-### SQL
-**1. PostgreSQL**
+1. **Vyper**
+2. **Moccassin**
 _______________________________________________________________________________
+### Front-End Development
+<img src="./00-images/svelte.png" width="50" height="50"/>
+<img src="./00-images/typescript.png" width="50" height="50"/>
+<img src="./00-images/tailwindcss.png" width="50" height="50"/>
+<img src="./00-images/css.png" width="50" height="50"/>
+<img src="./00-images/html.png" width="50" height="50"/>
 
-## Web Document Creation
+1. **Svelte**
+2. **TypeScript**
+3. **Tailwind CSS, HTML**
 
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/markdown.svg" width="50" height="50" />
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/html.svg" width="50" height="50" />
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/css.svg" width="50" height="50" />
+#### Dev Tools
+<img src="./00-images/bun.png" width="50" height="50"/>
+<img src="./00-images/vite.png" width="50" height="50"/>
 
-**1. Markdown**
-
-**2. Html**
-
-**3. CSS**
-
+4. **Bun**
+5. **Vite**
 _______________________________________________________________________________
+### Scripting
+<img src="./00-images/bash.png" width="50" height="50"/>
+<img src="./00-images/lua.png" width="50" height="50"/>
 
-## Scripting
+1. **Bash**
+2. **Lua**
+_______________________________________________________________________________
+### Documentation
+<img src="./00-images/markdown.png" width="50" height="50"/>
 
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/bash.svg" width="50" height="50" />
-<img src="https://raw.githubusercontent.com/dezly-macauley/image-hub/main/nixos.svg" width="50" height="50" />
-
-**1. Bash**
-
-**2. Nix**
-
+1. **Markdown**
 _______________________________________________________________________________
