@@ -71,9 +71,12 @@ Create a table and set its data types
 ```
 create table superheroes(
 id integer,
-hero_name text);
+hero_name text) strict;
 ```
 
+The strict keyword is to ensure that the table is strictly typed.
+I.e. You can't insert text data into a column that is declared 
+for integer values.
 _______________________________________________________________________________
 ### To check what tables you have in your database:
 ```
@@ -148,5 +151,77 @@ This will select all columns from the table called `superheroes`,
 but only the first 5 rows of data will be displayed.
 ```
 select * from superheroes limit 5;
+```
+_______________________________________________________________________________
+### Strict table
+
+create table my_strict_table(
+fav_num integer,
+user_name text) strict;
+
+
+_______________________________________________________________________________
+### Working with dates
+
+```
+select date();
+```
++------------+
+| date()     |
++------------+
+| 2024-12-16 |
++------------+
+
+year-month-day
+
+```
+select datetime();
+```
++---------------------+
+| datetime()          |
++---------------------+
+| 2024-12-16 10:23:35 |
++---------------------+
+
+```
+select time();
+```
++----------+
+| time()   |
++----------+
+| 10:24:46 |
++----------+
+
+_______________________________________________________________________________
+### Working with booleans
+
+In SQLite, booleans are not a separate data type. 
+Instead, SQLite uses integers to represent boolean values:
+
+0 is treated as false.
+1 is treated as true.
+
+```
+CREATE TABLE active_players(
+id integer,                 
+user_name text,             
+has_premium_account integer);
+```
+
+```
+insert into active_players values (45, 'Jane', 1);
+insert into active_players values (45, 'Patrick', 0);
+```
+
+Now when you make a query you can do this:
+
+```
+select * from active_players where has_premium_account = 1;
+```
+
+or this which is more natural.
+
+```
+select * from active_players where has_premium_account = true;
 ```
 _______________________________________________________________________________
