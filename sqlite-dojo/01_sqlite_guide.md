@@ -77,6 +77,13 @@ hero_name text) strict;
 The strict keyword is to ensure that the table is strictly typed.
 I.e. You can't insert text data into a column that is declared 
 for integer values.
+
+How to delete a table:
+
+```
+drop table superheroes;
+```
+
 _______________________________________________________________________________
 ### To check what tables you have in your database:
 ```
@@ -224,4 +231,33 @@ or this which is more natural.
 ```
 select * from active_players where has_premium_account = true;
 ```
+_______________________________________________________________________________
+
+### Working with real numbers
+
+SQLite gives you 15 digits of precision:
+
+#### These are valid
+123456789012345 | 0 decimals and 15 digits
+
+0.123456789012345 | 15 digits after `.0`. The zero does not count in this case
+
+100.567890123456 | (3 digits before the `.`, 12 digits after
+
+If a value passes this, rounding starts to happen.
+
+_______________________________________________________________________________
+
+### Primary Key autoincrement
+
+This will ensure that each row has a unique marker.
+
+```
+create table favourite_songs(
+song_id integer primary key autoincrement,
+song_name text
+);
+```
+
+insert into  
 _______________________________________________________________________________
