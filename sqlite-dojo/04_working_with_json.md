@@ -148,6 +148,19 @@ This will return the value as a :
 London
 
 _______________________________________________________________________________
+### Inserting and updating json
+
+```
+select json('{a: 1}');
+```
+
+
+```
+sel
+```
+
+
+_______________________________________________________________________________
 
 SQLite does not have a specific data type for json
 

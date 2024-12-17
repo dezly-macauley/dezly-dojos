@@ -3,5 +3,5 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 export default defineConfig({
     plugins: [svelte()],
-    root: "./src/14-default-values/",
+    root: "./01-syntax-recap/14-default-values/",
 })

@@ -5,7 +5,7 @@
 
     // `$state()` is called a `rune` in Svelte
     // It is not function. It is part of the Svelte language
-
+   
 	let numberOfClicks: number = $state(0);
 
 	function increment() {

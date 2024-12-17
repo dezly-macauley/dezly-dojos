@@ -24,9 +24,3 @@
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
-
-
- //    ~/dezly-dojos/svelte-dojo/  2 
- //   └╴  tsconfig.json  2 
- //     ├╴E Option 'allowImportingTsExtensions' can only be used when either 'noEmit' or 'emitDeclarationOnly' is set. ts  [10, 35]
- //     └╴E Referenced project '/home/dezly-macauley/dezly-dojos/svelte-dojo/tsconfig.node.json' may not disable emit. ts  [24, 18]
